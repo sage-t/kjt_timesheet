@@ -22,10 +22,11 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  database: kjt_production
-  pool: 5
-  timeout: 5000
+  url: <%= ENV['DATABASE_URL'] %>
+  # adapter: postgresql
+  # database: kjt_production
+  # pool: 5
+  # timeout: 5000
   # username: username
   # password: password
   # host: localhost
