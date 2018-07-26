@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @pay_period.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @pay_period.end %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% User.all.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to 'Hours', user_path(user) %> (<%= sum_hours(user, @pay_period) %>)</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_pay_period_path(@pay_period) %> |
+<%= link_to 'Back', pay_periods_path %>

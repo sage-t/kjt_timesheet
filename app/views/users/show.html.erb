@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= @user.name %>'s Timesheet
+</h1>
+
+<%= link_to 'Change name', edit_user_path(@user) %>
+
+<h2>Total Time this Payweek: <%= sum_hours(@user, PayPeriod.last)%> hours</h2>
+
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Punches (most recent first)</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% punch_count = 0 %>
+    <% @user.punches.select { |p| p.pay_period == PayPeriod.last }.reverse.each do |punch| %>
+      <tr>
+        <td><%= punch.time.localtime %></td>
+        <td><%= punch_count % 2 == 0 ? "<div style='color: green'>Clocked In".html_safe : "<div style='color: red'>Clocked Out".html_safe %></td>
+      </tr>
+      <% punch_count += 1 %>
+    <% end %>
+  </tbody>
+</table>

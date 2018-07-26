@@ -1,8 +1,4 @@
-module StaticPagesHelper
-    def punch_status(user)
-        user.punches.select { |p| p.pay_period == PayPeriod.last }.length % 2 == 1 ? "<div style='color: green'>Clocked In".html_safe : "<div style='color: red'>Clocked Out".html_safe
-    end
-    
+module UsersHelper
     def sum_hours(user, pay_period)
         time = 0
 
